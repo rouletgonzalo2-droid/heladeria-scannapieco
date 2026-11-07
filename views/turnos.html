@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turnos · Heladería Scannapieco</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,100&family=Figtree:wght@400;600;700&family=Yellowtail&display=swap">
+<style>
+  :root { --navy: #1c3f6e; --navy-d: #12284a; --paper: #fbf8f1; --sky: #9dbbe3; --ease: cubic-bezier(0.23, 1, 0.32, 1); }
+  * { box-sizing: border-box; } html, body { height: 100%; margin: 0; }
+  body { background: var(--navy-d); color: var(--paper); font: 600 1rem 'Figtree', sans-serif; display: grid; grid-template-rows: auto 1fr; overflow: hidden; }
+  header { display: flex; align-items: center; justify-content: space-between; padding: 2.4vh 3vw; border-bottom: 2px solid rgba(157,187,227,.25); }
+  .logo { font: 400 5vh 'Yellowtail', cursive; } .logo small { font: 600 1.6vh 'Figtree'; letter-spacing: .14em; text-transform: uppercase; display: block; opacity: .7; }
+  .clock { font: 800 5vh 'Fraunces', serif; font-variant-numeric: tabular-nums; }
+  main { display: grid; grid-template-columns: 1fr 1.25fr 0.7fr; }
+  section { padding: 3vh 3vw; display: grid; grid-template-rows: auto 1fr; gap: 2vh; } section + section { border-left: 2px solid rgba(157,187,227,.25); }
+  h2 { margin: 0; font: 700 4vh 'Fraunces', serif; } .ready h2 { color: #fff; }
+  ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-content: flex-start; gap: 1.6vh 1.6vw; }
+  li { font: 900 9vh/1 'Fraunces', serif; font-variant-numeric: tabular-nums; min-width: 1.6em; text-align: center; }
+  .prep li { color: var(--sky); font-size: 7vh; }
+  .ready { background: var(--navy); } .ready li { background: var(--paper); color: var(--navy-d); border-radius: 2vh; padding: 1.4vh 2vw; font-size: 12vh; }
+  .ready li.new { animation: pop 900ms var(--ease) 3; }
+  @keyframes pop { 0% { transform: scale(1); } 30% { transform: scale(1.12); box-shadow: 0 0 0 1.2vh rgba(251,248,241,.25); } 100% { transform: scale(1); } }
+  .scan { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 2vh; }
+  .scan .qr { background: #fff; border-radius: 2vh; padding: 1.6vh; width: min(26vh, 100%); } .scan .qr svg { width: 100%; height: auto; display: block; }
+  .scan p { font-size: 2.6vh; max-width: 18ch; margin: 0; } .scan b { font: 400 4vh 'Yellowtail', cursive; }
+  .empty { opacity: .5; font: 600 2.4vh 'Figtree'; }
+  #sound { position: fixed; left: 2vw; bottom: 2vh; background: transparent; color: var(--paper); border: 2px solid rgba(157,187,227,.5); border-radius: 999px; padding: 1vh 1.6vw; font: 600 1.6vh 'Figtree'; cursor: pointer; }
+</style>
+</head>
+<body>
+<header><div class="logo"><small>Heladería</small>Scannapieco</div><div class="clock" id="clock">--:--</div></header>
+<main>
+  <section class="prep"><h2>Preparando</h2><ul id="prep"></ul></section>
+  <section class="ready"><h2>¡Listo! Pasá por la caja</h2><ul id="ready"></ul></section>
+  <section class="scan"><b>Pedí sin fila</b><div class="qr" id="qr"></div><p>Escaneá con la cámara del celu y elegí tus gustos</p></section>
+</main>
+<button id="sound" type="button">Activar sonido</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s); let seen = new Set(), first = true, ctx = null;
+  try { const q = qrcode(0, 'M'); q.addData('{{BASE}}/mostrador'); q.make(); $('#qr').innerHTML = q.createSvgTag({ cellSize: 6, margin: 2, scalable: true }); } catch (e) {}
+  $('#sound').onclick = () => { ctx = ctx || new (window.AudioContext || window.webkitAudioContext)(); $('#sound').textContent = 'Sonido activado'; ding(); };
+  function ding() { if (!ctx) return; [660, 880].forEach((f, i) => { const o = ctx.createOscillator(), g = ctx.createGain(); o.frequency.value = f; o.connect(g); g.connect(ctx.destination); const t = ctx.currentTime + i * .18; g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.3, t + .02); g.gain.exponentialRampToValueAtTime(.0001, t + .5); o.start(t); o.stop(t + .55); }); }
+  const tick = () => { $('#clock').textContent = new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit', hour12: false }); };
+  async function load() {
+    try {
+      const r = await (await fetch('/api/turnos', { cache: 'no-store' })).json();
+      $('#prep').innerHTML = r.preparing.length ? r.preparing.map((n) => `<li>${n}</li>`).join('') : '<li class="empty">Sin pedidos en preparación</li>';
+      let fresh = false;
+      $('#ready').innerHTML = r.ready.length ? r.ready.map((n) => { const isNew = !first && !seen.has(n); if (isNew) fresh = true; return `<li class="${isNew ? 'new' : ''}">${n}</li>`; }).join('') : '<li class="empty" style="background:none;color:inherit;font-size:2.4vh;padding:0">Todavía nada. ¡Ya sale!</li>';
+      seen = new Set(r.ready); first = false; if (fresh) ding();
+    } catch (e) {}
+  }
+  tick(); load(); setInterval(tick, 10000); setInterval(load, 4000);
+})();
+</script>
+</body>
+</html>

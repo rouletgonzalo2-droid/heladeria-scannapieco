@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mi tarjeta de sellos · Heladería Scannapieco</title>
+<meta name="robots" content="noindex"><meta name="theme-color" content="#1c3f6e">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,100&family=Figtree:wght@400;600;700&family=Yellowtail&display=swap">
+<link rel="stylesheet" href="/css/site.css?v={{V}}">
+<style>
+  body { min-height: 100svh; display: grid; place-items: center; padding: 24px 16px 40px; background: var(--cream); }
+  .wrap { width: min(440px, 100%); display: grid; gap: 18px; }
+  .s-card { transform: none; aspect-ratio: auto; min-height: 270px; gap: 16px; }
+  .s-card-top svg { color: var(--paper); }
+  .qrbox { background: #fff; border-radius: 22px; padding: 18px; display: grid; grid-template-columns: 140px 1fr; gap: 16px; align-items: center; border: 2px solid var(--line); }
+  .qrbox .qr { width: 140px; padding: 0; }
+  .big { font: 800 1.4rem var(--f-d); color: var(--navy-d); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <a class="brand" href="/" style="justify-self:center"><span class="brand-t" style="text-align:center"><small>Heladería</small><b>Scannapieco</b><small>desde 1938</small></span></a>
+  <div class="s-card" id="card">
+    <div class="s-card-top"><span id="hi">Hola</span></div>
+    <ol class="stamps" id="stamps"></ol>
+    <p class="s-card-foot"><span id="left">Cargando…</span><span id="code"></span></p>
+  </div>
+  <div class="qrbox"><div class="qr" id="qr"></div><div><p class="big">Mostrá este código en el mostrador</p><p style="color:var(--ink-2);margin-top:6px">Cada pedido entregado suma un sello. Con 8, el 1/4 kg va por la casa.</p></div></div>
+  <a class="btn btn-solid" href="/#pedido">Hacer un pedido</a>
+</main>
+<script src="/js/site.js?v={{V}}" defer></script>
+<script>
+addEventListener('DOMContentLoaded', async () => {
+  const code = location.pathname.split('/').pop(), $ = (s) => document.querySelector(s);
+  try {
+    const r = await fetch('/api/cards/' + code), c = await r.json(); if (!r.ok) throw new Error(c.error);
+    try { localStorage.setItem('sc_card', JSON.stringify(c.code)); } catch (e) {}
+    $('#hi').textContent = 'Hola, ' + c.name; $('#code').textContent = c.code;
+    const on = Math.min(c.stamps, c.goal);
+    $('#stamps').innerHTML = Array.from({ length: c.goal }, (_, i) => `<li class="${i < on ? 'on' : ''}"></li>`).join('');
+    $('#left').textContent = c.stamps >= c.goal ? '¡Tenés un 1/4 kg de regalo!' : `Te faltan ${c.goal - c.stamps} sellos`;
+    window.scQR?.(location.href, $('#qr'));
+  } catch (e) { $('#left').textContent = e.message || 'No encontramos esta tarjeta.'; }
+});
+</script>
+</body>
+</html>

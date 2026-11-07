@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heladería Scannapieco · Helado artesanal en Colegiales desde 1938</title>
+<meta name="description" content="Heladería artesanal familiar desde 1938, en Av. Álvarez Thomas 10, Colegiales. Mirá la vitrina en vivo, armá tu kilo con envío o retiro sin fila y encargá tortas heladas.">
+<link rel="canonical" href="{{BASE}}/">
+<meta name="theme-color" content="#1c3f6e">
+<meta property="og:type" content="website"><meta property="og:locale" content="es_AR">
+<meta property="og:title" content="Heladería Scannapieco · desde 1938"><meta property="og:description" content="Helado artesanal en Colegiales. Vitrina en vivo, pedidos con envío y tortas heladas por encargo.">
+<meta property="og:url" content="{{BASE}}/"><meta property="og:image" content="{{BASE}}/og.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,100&family=Figtree:wght@400;500;600;700&family=Yellowtail&display=swap">
+<link rel="stylesheet" href="/css/site.css?v={{V}}">
+<script type="application/ld+json">{{JSONLD}}</script>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('sc_still')==='1')document.documentElement.classList.add('still')}catch(e){}</script>
+</head>
+<body data-mode="web">
+<a class="skip" href="#gustos">Saltar a los gustos</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="tram" viewBox="0 0 220 120"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M70 26 L120 2" /><circle cx="121" cy="2" r="2.5" fill="currentColor"/>
+    <path d="M30 34h160a8 8 0 0 1 8 8v52H22V42a8 8 0 0 1 8-8z" fill="var(--tram-fill,#fbf8f1)"/>
+    <path d="M40 34c10-10 130-10 140 0" /><path d="M22 60h176" />
+    <rect x="34" y="42" width="22" height="16" rx="3"/><rect x="64" y="42" width="22" height="16" rx="3"/><rect x="94" y="42" width="22" height="16" rx="3"/><rect x="124" y="42" width="22" height="16" rx="3"/><rect x="164" y="42" width="24" height="44" rx="3"/>
+    <text x="96" y="78" font-family="Yellowtail, cursive" font-size="17" fill="currentColor" stroke="none" text-anchor="middle">Scannapieco</text>
+    <path d="M18 94h184" /><g class="wheel"><circle cx="58" cy="104" r="11" fill="var(--tram-fill,#fbf8f1)"/><path d="M58 93v22M47 104h22"/></g><g class="wheel"><circle cx="162" cy="104" r="11" fill="var(--tram-fill,#fbf8f1)"/><path d="M162 93v22M151 104h22"/></g>
+  </g></symbol>
+</svg>
+
+<header class="top" id="top">
+  <a class="brand" href="/" aria-label="Heladería Scannapieco, inicio">
+    <svg class="brand-tram" aria-hidden="true"><use href="#tram"/></svg>
+    <span class="brand-t"><small>Heladería</small><b>Scannapieco</b><small>desde 1938</small></span>
+  </a>
+  <nav class="nav" aria-label="Secciones">
+    <a href="#gustos">Gustos</a><a href="#pedido">Pedir</a><a href="#tortas">Tortas</a><a href="#historia">Historia</a><a href="#sellos">Sellos</a><a href="#visitanos">Cómo llegar</a>
+  </nav>
+  <div class="top-r">
+    <span class="open {{OPEN_CLS}}" id="open">{{OPEN}}</span>
+    <button class="icon-btn" id="motion" type="button" aria-pressed="false" title="Pausar animaciones"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M8 5v14M16 5v14"/><path class="i-play" d="M7 5l12 7-12 7z"/></svg><span class="sr">Pausar o reanudar animaciones</span></button>
+    <button class="cart-btn" id="cartBtn" type="button" aria-label="Ver tu pedido"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9h12l-1.6 10.2a2 2 0 0 1-2 1.8H9.6a2 2 0 0 1-2-1.8z"/><path d="M5 9h14"/><path d="M9 9a3 3 0 0 1 6 0"/></svg><span>Pedido</span><b id="cartN">0</b></button>
+  </div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+  <div class="hero-copy">
+    <p class="motto" aria-hidden="true">Nada que un helado no pueda arreglar</p>
+    <h1 id="h1"><span class="ln">Helado artesanal</span> <span class="ln">en Colegiales,</span> <span class="ln"><em>desde 1938.</em></span></h1>
+    <p class="lead">La misma familia, la misma cuchara. Mirá qué hay hoy en la vitrina, armá tu kilo y elegí si pasás a buscarlo o te lo llevamos.</p>
+    <div class="cta">
+      <a class="btn btn-solid" href="#pedido">Armá tu pedido</a>
+      <a class="btn btn-line" href="#gustos">Ver los {{COUNT}} gustos</a>
+    </div>
+    {{NOTE}}
+  </div>
+  <div class="hero-stage">
+    <button class="cone" id="cone" type="button" aria-label="Tocá el cucurucho para sumarle una bocha">
+      <svg viewBox="0 0 300 420" aria-hidden="true">
+        <defs><pattern id="waffle" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#e9c58d"/><path d="M0 0H16M0 0V16" stroke="#c79a5b" stroke-width="3"/></pattern></defs>
+        <g id="scoops"></g>
+        <path class="cone-body" d="M78 236 L150 412 L222 236 Z" fill="url(#waffle)" stroke="#12284a" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M72 236h156" stroke="#12284a" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <p class="cone-tip"><span>Tocá el cucurucho</span></p>
+    <a class="fotd" href="/gustos/{{FOTD_SLUG}}" style="--c:{{FOTD_COLOR}}"><span class="dot" aria-hidden="true"></span><span><small>Hoy recomendamos</small>{{FOTD_NAME}}</span></a>
+  </div>
+  <div class="line" aria-hidden="true">
+    <div class="wire"></div>
+    <svg class="tram-run"><use href="#tram"/></svg>
+    <div class="rail"></div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-in"><span>{{MARQUEE}}  ·  </span><span>{{MARQUEE}}  ·  </span></div></div>
+
+<section class="sec vitrina" id="gustos" aria-labelledby="h-gustos">
+  <div class="sec-head">
+    <h2 id="h-gustos">La vitrina, <em>ahora mismo</em></h2>
+    <p>El nivel de cada bacha baja con cada pedido y lo actualizan desde la fábrica. Tocá un gusto para sumarlo a tu pote.</p>
+  </div>
+  <div class="vit-tools">
+    <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg><span class="sr">Buscar gusto</span><input id="q" type="search" placeholder="Buscar gusto" autocomplete="off"></label>
+    <div class="chips" role="group" aria-label="Filtrar gustos">
+      <button type="button" class="chip" data-f="all" aria-pressed="true">Todos</button>
+      <button type="button" class="chip" data-f="dulces" aria-pressed="false">Dulces de leche</button>
+      <button type="button" class="chip" data-f="chocolates" aria-pressed="false">Chocolates</button>
+      <button type="button" class="chip" data-f="cremas" aria-pressed="false">Cremas</button>
+      <button type="button" class="chip" data-f="frutales" aria-pressed="false">Frutales</button>
+      <button type="button" class="chip" data-f="vegan" aria-pressed="false">Veganos</button>
+      <button type="button" class="chip" data-f="gf" aria-pressed="false">Sin TACC</button>
+    </div>
+    <button type="button" class="btn btn-line btn-sm" id="spin">¿No sabés qué pedir? <b>Elegime 3</b></button>
+  </div>
+  <div class="reels" id="reels" hidden>
+    <div class="reel"><span></span></div><div class="reel"><span></span></div><div class="reel"><span></span></div>
+    <button type="button" class="btn btn-solid btn-sm" id="useReels" disabled>Ponelos en mi pote</button>
+  </div>
+  <div class="glass" id="vitrina">{{VITRINA}}</div>
+  <p class="empty" id="vitEmpty" hidden>No encontramos ese gusto. Probá con otra palabra.</p>
+</section>
+
+<section class="sec builder" id="pedido" aria-labelledby="h-pedido">
+  <div class="sec-head">
+    <h2 id="h-pedido">Armá tu pote</h2>
+    <p>Elegí el tamaño y sumá gustos desde la vitrina o desde acá abajo. Lo retirás sin fila o te lo llevamos a {{ZONES}} ({{FEE}} de envío).</p>
+  </div>
+  <div class="b-grid">
+    <div class="sizes" role="group" aria-label="Tamaño">{{SIZES}}</div>
+    <div class="pot-stage">
+      <svg class="pot" viewBox="0 0 220 240" aria-hidden="true">
+        <defs><clipPath id="potClip"><path d="M30 40h160l-16 178a14 14 0 0 1-14 12H60a14 14 0 0 1-14-12z"/></clipPath></defs>
+        <g clip-path="url(#potClip)"><rect x="0" y="0" width="220" height="240" fill="#fff"/><g id="layers"></g></g>
+        <path d="M30 40h160l-16 178a14 14 0 0 1-14 12H60a14 14 0 0 1-14-12z" fill="none" stroke="#12284a" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M20 40h180" stroke="#12284a" stroke-width="6" stroke-linecap="round"/>
+        <text x="110" y="150" text-anchor="middle" class="pot-logo">Scannapieco</text>
+      </svg>
+      <p class="pot-cap" id="potCap" aria-live="polite">Elegí hasta 3 gustos</p>
+    </div>
+    <div class="slots-col">
+      <ol class="slots" id="slots" aria-label="Gustos elegidos"></ol>
+      <label class="search search-sm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span class="sr">Sumar un gusto escribiendo</span><input id="addQ" list="flist" placeholder="Sumar gusto escribiendo" autocomplete="off"></label>
+      <datalist id="flist"></datalist>
+      <div class="b-foot">
+        <div class="qty" role="group" aria-label="Cantidad"><button type="button" id="qMinus" aria-label="Uno menos">−</button><output id="qN">1</output><button type="button" id="qPlus" aria-label="Uno más">+</button></div>
+        <button type="button" class="btn btn-solid buy" id="addPot" disabled>Sumar al pedido · <span id="potPrice">$0</span></button>
+      </div>
+      <p class="hint" id="bMsg" role="status"></p>
+    </div>
+  </div>
+</section>
+
+<section class="sec tortas" id="tortas" aria-labelledby="h-tortas">
+  <div class="sec-head">
+    <h2 id="h-tortas">Tortas heladas <em>por encargo</em></h2>
+    <p>Encargala con 48 horas y pasá a buscarla el día que elijas. Si querés, le escribimos un mensaje arriba.</p>
+  </div>
+  <form class="t-form" id="cakeForm" novalidate>
+    <ul class="cakes">{{CAKES}}</ul>
+    <fieldset class="t-when">
+      <legend>¿Para cuándo?</legend>
+      <div class="days" id="days" role="radiogroup" aria-label="Día de retiro"></div>
+      <div class="times" id="ctimes" role="radiogroup" aria-label="Horario de retiro"></div>
+    </fieldset>
+    <div class="t-fields">
+      <label>Nombre<input name="name" autocomplete="name" required maxlength="50"></label>
+      <label>Teléfono<input name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="25"></label>
+      <label class="wide">Mensaje en la torta <small>(opcional)</small><input name="message" maxlength="60" placeholder="Feliz cumple, Joaco"></label>
+      <label>Seña<select name="pay"><option value="transferencia">Transferencia</option><option value="mp">Mercado Pago</option><option value="efectivo">Efectivo en el local</option></select></label>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn btn-solid buy" type="submit">Encargar torta</button>
+    </div>
+    <p class="hint" id="cakeMsg" role="status"></p>
+  </form>
+</section>
+
+<section class="historia" id="historia" aria-labelledby="h-historia">
+  <div class="h-sticky">
+    <h2 id="h-historia">Una heladería que viajó <em>en tranvía</em></h2>
+    <div class="h-track" aria-hidden="true"><div class="h-wire"></div><svg class="h-tram" id="hTram"><use href="#tram"/></svg><div class="h-rail"></div></div>
+    <ol class="stops" id="stops">
+      <li data-at="0.04"><b>1938</b><p>La familia Scannapieco, de origen italiano, abre la heladería en Av. Córdoba al 4800.</p></li>
+      <li data-at="0.36"><b>2010</b><p>Después de más de 70 años tiene que dejar el local de Av. Córdoba. La receta se guarda en casa.</p></li>
+      <li data-at="0.64"><b>2013</b><p>Reabre en Av. Álvarez Thomas 10, en Colegiales. Los vecinos vuelven a hacer fila.</p></li>
+      <li data-at="0.92"><b>Hoy</b><p>Se hacen hasta 2.000 kilos por semana, con el dulce de leche como el gusto más pedido.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec sellos" id="sellos" aria-labelledby="h-sellos">
+  <div class="s-copy">
+    <h2 id="h-sellos">Juntá 8 sellos, <em>el 1/4 va por la casa</em></h2>
+    <p>Sacá tu tarjeta en un minuto. Te queda un código QR en el celu: lo mostrás en el mostrador o lo ponés al pedir online, y cada pedido entregado suma un sello.</p>
+    <form class="s-form" id="cardForm" novalidate>
+      <label>Nombre<input name="name" autocomplete="given-name" required maxlength="40"></label>
+      <label>Celular<input name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="25"></label>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn btn-solid buy" type="submit">Sacar mi tarjeta</button>
+    </form>
+    <p class="hint" id="cardMsg" role="status"></p>
+  </div>
+  <div class="s-card" id="sCard" aria-hidden="true">
+    <div class="s-card-top"><svg><use href="#tram"/></svg><span>Scannapieco</span></div>
+    <ol class="stamps"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ol>
+    <p class="s-card-foot"><span id="sName">Tu nombre</span><span>S-······</span></p>
+  </div>
+</section>
+
+<section class="sec visit" id="visitanos" aria-labelledby="h-visit">
+  <div class="v-info">
+    <h2 id="h-visit">Álvarez Thomas 10, <em>Colegiales</em></h2>
+    <p>A media cuadra de Federico Lacroze. Subte B, estación Federico Lacroze, y tren Urquiza.</p>
+    <table class="hours" id="hours"><caption class="sr">Horarios</caption><tbody>
+      <tr data-d="0"><th scope="row">Domingo</th><td>12 a 24</td></tr><tr data-d="1"><th scope="row">Lunes</th><td>12 a 24</td></tr><tr data-d="2"><th scope="row">Martes</th><td>12 a 24</td></tr><tr data-d="3"><th scope="row">Miércoles</th><td>12 a 24</td></tr><tr data-d="4"><th scope="row">Jueves</th><td>12 a 24</td></tr><tr data-d="5"><th scope="row">Viernes</th><td>12 a 1</td></tr><tr data-d="6"><th scope="row">Sábado</th><td>12 a 1</td></tr>
+    </tbody></table>
+    <div class="cta">
+      <a class="btn btn-solid" href="https://www.google.com/maps/dir/?api=1&destination=Av.+%C3%81lvarez+Thomas+10,+Colegiales,+Buenos+Aires" target="_blank" rel="noopener">Cómo llegar</a>
+      <a class="btn btn-line" href="tel:+541147773528">Llamar 4777-3528</a>
+      <a class="btn btn-line" href="https://wa.me/5491123233780" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+  <div class="map"><iframe title="Mapa: Heladería Scannapieco en Av. Álvarez Thomas 10" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Av.+%C3%81lvarez+Thomas+10,+Colegiales,+Buenos+Aires&output=embed"></iframe></div>
+</section>
+
+<section class="sec faq" aria-labelledby="h-faq">
+  <h2 id="h-faq">Preguntas que nos hacen</h2>
+  <div class="faq-list">{{FAQ}}</div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <a class="brand" href="/"><svg class="brand-tram" aria-hidden="true"><use href="#tram"/></svg><span class="brand-t"><small>Heladería</small><b>Scannapieco</b><small>desde 1938</small></span></a>
+    <p>{{HOURS}}<br>Av. Álvarez Thomas 10, Colegiales · 4777-3528</p>
+    <p><a href="https://www.instagram.com/scannapiecohelados/" target="_blank" rel="noopener">Instagram @scannapiecohelados</a> · <a href="/fabrica/">Ingreso fábrica</a></p>
+  </div>
+</footer>
+
+<a class="fab" id="potFab" href="#pedido" hidden><span class="fab-pot" aria-hidden="true"><i></i></span><span id="fabTxt">Tu pote</span></a>
+<button class="track-pill" id="trackPill" type="button" hidden></button>
+
+<div class="mbar"><a class="btn btn-line" href="#gustos">Gustos</a><button class="btn btn-solid buy" type="button" id="mCart">Pedido · <b id="mN">0</b></button></div>
+
+<dialog class="drawer" id="drawer" aria-labelledby="dTitle">
+  <div class="d-head"><h2 id="dTitle">Tu pedido</h2><button class="icon-btn" type="button" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="d-body" id="dBody"></div>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="/js/site.js?v={{V}}" defer></script>
+</body>
+</html>

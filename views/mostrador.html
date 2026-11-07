@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pedí sin fila · Heladería Scannapieco</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1c3f6e">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,100&family=Figtree:wght@400;500;600;700&family=Yellowtail&display=swap">
+<link rel="stylesheet" href="/css/site.css?v={{V}}">
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('sc_still')==='1')document.documentElement.classList.add('still')}catch(e){}</script>
+</head>
+<body data-mode="mostrador">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="tram" viewBox="0 0 220 120"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M70 26 L120 2"/><circle cx="121" cy="2" r="2.5" fill="currentColor"/><path d="M30 34h160a8 8 0 0 1 8 8v52H22V42a8 8 0 0 1 8-8z" fill="var(--tram-fill,#fbf8f1)"/><path d="M40 34c10-10 130-10 140 0"/><path d="M22 60h176"/><rect x="34" y="42" width="22" height="16" rx="3"/><rect x="64" y="42" width="22" height="16" rx="3"/><rect x="94" y="42" width="22" height="16" rx="3"/><rect x="124" y="42" width="22" height="16" rx="3"/><rect x="164" y="42" width="24" height="44" rx="3"/><path d="M18 94h184"/><g class="wheel"><circle cx="58" cy="104" r="11" fill="var(--tram-fill,#fbf8f1)"/><path d="M58 93v22M47 104h22"/></g><g class="wheel"><circle cx="162" cy="104" r="11" fill="var(--tram-fill,#fbf8f1)"/><path d="M162 93v22M151 104h22"/></g></g></symbol>
+</svg>
+<header class="m-top">
+  <a class="brand" href="/"><svg class="brand-tram" aria-hidden="true"><use href="#tram"/></svg><span class="brand-t"><small>Heladería</small><b>Scannapieco</b></span></a>
+  <button class="cart-btn" id="cartBtn" type="button" aria-label="Ver tu pedido" style="background:#fff;color:var(--navy)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9h12l-1.6 10.2a2 2 0 0 1-2 1.8H9.6a2 2 0 0 1-2-1.8z"/><path d="M5 9h14"/></svg><b id="cartN" style="background:var(--navy);color:#fff">0</b></button>
+</header>
+<div class="m-intro">
+  <span class="open {{OPEN_CLS}}">{{OPEN}}</span>
+  <h1 style="margin-top:14px">Pedí sin hacer fila</h1>
+  <p>Elegí el tamaño, tocá los gustos y te damos un número de turno. Mirá la pantalla o este celu: cuando esté listo, lo pagás y lo retirás en la caja.</p>
+</div>
+<section class="sec builder" id="pedido" aria-label="Armá tu pote">
+  <div class="b-grid">
+    <div class="sizes" role="group" aria-label="Tamaño">{{SIZES}}</div>
+    <div class="pot-stage">
+      <svg class="pot" viewBox="0 0 220 240" aria-hidden="true"><defs><clipPath id="potClip"><path d="M30 40h160l-16 178a14 14 0 0 1-14 12H60a14 14 0 0 1-14-12z"/></clipPath></defs><g clip-path="url(#potClip)"><rect width="220" height="240" fill="#fff"/><g id="layers"></g></g><path d="M30 40h160l-16 178a14 14 0 0 1-14 12H60a14 14 0 0 1-14-12z" fill="none" stroke="#12284a" stroke-width="4" stroke-linejoin="round"/><path d="M20 40h180" stroke="#12284a" stroke-width="6" stroke-linecap="round"/><text x="110" y="150" text-anchor="middle" class="pot-logo">Scannapieco</text></svg>
+      <p class="pot-cap" id="potCap" aria-live="polite"></p>
+    </div>
+    <div class="slots-col">
+      <ol class="slots" id="slots" aria-label="Gustos elegidos"></ol>
+      <div class="b-foot">
+        <div class="qty" role="group" aria-label="Cantidad"><button type="button" id="qMinus" aria-label="Uno menos">−</button><output id="qN">1</output><button type="button" id="qPlus" aria-label="Uno más">+</button></div>
+        <button type="button" class="btn btn-solid buy" id="addPot" disabled>Sumar · <span id="potPrice">$0</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sec vitrina" id="gustos" aria-label="Gustos">
+  <div class="vit-tools">
+    <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg><span class="sr">Buscar gusto</span><input id="q" type="search" placeholder="Buscar gusto" autocomplete="off"></label>
+    <div class="chips" role="group" aria-label="Filtrar gustos"><button type="button" class="chip" data-f="all" aria-pressed="true">Todos</button><button type="button" class="chip" data-f="vegan" aria-pressed="false">Veganos</button><button type="button" class="chip" data-f="gf" aria-pressed="false">Sin TACC</button></div>
+  </div>
+  <div class="glass" id="vitrina"></div>
+  <p class="empty" id="vitEmpty" hidden>No encontramos ese gusto.</p>
+</section>
+<div style="height:120px"></div>
+<a class="fab" id="potFab" href="#pedido" hidden><span class="fab-pot" aria-hidden="true"><i></i></span><span id="fabTxt">Tu pote</span></a>
+<button class="track-pill" id="trackPill" type="button" hidden></button>
+<dialog class="drawer" id="drawer" aria-labelledby="dTitle"><div class="d-head"><h2 id="dTitle">Tu pedido</h2><button class="icon-btn" type="button" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="d-body" id="dBody"></div></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="/js/site.js?v={{V}}" defer></script>
+</body>
+</html>

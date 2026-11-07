@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La Fábrica · Scannapieco</title>
+<meta name="robots" content="noindex, nofollow"><meta name="theme-color" content="#12284a">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,600..900,100&family=Figtree:wght@400;500;600;700&family=Yellowtail&display=swap">
+<link rel="stylesheet" href="/fabrica/fab.css">
+</head>
+<body>
+<div class="login" id="login" hidden>
+  <form id="loginForm" class="login-card">
+    <p class="script">Scannapieco</p>
+    <h1>La Fábrica</h1>
+    <p>Pedidos, vitrina, encargos y caja de la heladería.</p>
+    <label>Contraseña<input type="password" name="password" autocomplete="current-password" required></label>
+    <button class="b b-solid" type="submit">Entrar</button>
+    <p class="err" id="loginErr" role="alert"></p>
+  </form>
+</div>
+
+<div class="app" id="app" hidden>
+  <aside class="side">
+    <div class="side-brand"><span class="script">Scannapieco</span><small>La Fábrica</small></div>
+    <nav class="tabs" id="tabs" aria-label="Secciones">
+      <button data-tab="pedidos" aria-current="page"><svg viewBox="0 0 24 24"><path d="M5 4h14v16l-3-2-2 2-2-2-2 2-2-2-3 2z"/><path d="M9 9h6M9 13h6"/></svg><span>Pedidos</span><b id="nNew"></b></button>
+      <button data-tab="vitrina"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7v12M12 7v12M17 7v12M3 4h18"/></svg><span>Vitrina</span><b id="nLow"></b></button>
+      <button data-tab="encargos"><svg viewBox="0 0 24 24"><path d="M4 11h16v9H4z"/><path d="M4 15h16M8 11V8a4 4 0 0 1 8 0v3"/></svg><span>Encargos</span><b id="nEnc"></b></button>
+      <button data-tab="sellos"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="8" cy="12" r="2"/><circle cx="14" cy="12" r="2"/></svg><span>Sellos</span></button>
+      <button data-tab="produccion"><svg viewBox="0 0 24 24"><path d="M3 20V9l5 3V9l5 3V5h8v15z"/></svg><span>Producción</span></button>
+      <button data-tab="caja"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>Caja</span></button>
+      <button data-tab="ajustes"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg><span>Ajustes</span></button>
+    </nav>
+    <div class="side-foot"><span class="live" id="live">En vivo</span><button class="link" id="logout" type="button">Salir</button></div>
+  </aside>
+  <main class="main">
+    <header class="bar">
+      <h1 id="title">Pedidos</h1>
+      <div class="bar-r"><span class="clock" id="clock"></span><a class="b b-line" href="/turnos" target="_blank" rel="noopener">Pantalla de turnos</a><button class="b b-solid" id="quick" type="button">Venta rápida</button></div>
+    </header>
+    <div class="demo" id="demo" hidden>Estás viendo datos de ejemplo. Se borran desde Ajustes.</div>
+    <section class="view" id="v-pedidos"></section>
+    <section class="view" id="v-vitrina" hidden></section>
+    <section class="view" id="v-encargos" hidden></section>
+    <section class="view" id="v-sellos" hidden></section>
+    <section class="view" id="v-produccion" hidden></section>
+    <section class="view" id="v-caja" hidden></section>
+    <section class="view" id="v-ajustes" hidden></section>
+  </main>
+</div>
+
+<dialog class="modal" id="quickDlg" aria-labelledby="qTitle">
+  <form method="dialog" class="q" id="quickForm">
+    <div class="q-head"><h2 id="qTitle">Venta rápida</h2><button class="x" value="cancel" aria-label="Cerrar">×</button></div>
+    <div class="q-sizes" id="qSizes"></div>
+    <p class="q-info" id="qInfo"></p>
+    <div class="q-flavors" id="qFlavors"></div>
+    <div class="q-foot">
+      <label>Pago<select name="pay" id="qPay"><option value="efectivo">Efectivo</option><option value="debito">Débito</option><option value="mp">Mercado Pago</option><option value="transferencia">Transferencia</option></select></label>
+      <label>Tarjeta de sellos<input name="card" id="qCard" placeholder="S-XXXXXX" maxlength="8"></label>
+      <button class="b b-solid" type="button" id="qGo">Cobrar</button>
+    </div>
+    <p class="err" id="qErr" role="alert"></p>
+  </form>
+</dialog>
+<dialog class="modal" id="scanDlg" aria-label="Escanear tarjeta"><div class="q"><div class="q-head"><h2>Escaneá la tarjeta</h2><button class="x" type="button" id="scanClose" aria-label="Cerrar">×</button></div><video id="scanVid" playsinline muted></video><p class="q-info" id="scanInfo">Apuntá la cámara al QR de la tarjeta.</p></div></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" defer></script>
+<script src="/fabrica/fab.js" defer></script>
+</body>
+</html>

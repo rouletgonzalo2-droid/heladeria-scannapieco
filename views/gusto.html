@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Helado de {{NAME}} · Heladería Scannapieco, Colegiales</title>
+<meta name="description" content="{{META}}">
+<link rel="canonical" href="{{URL}}">
+<meta name="theme-color" content="#1c3f6e">
+<meta property="og:type" content="website"><meta property="og:locale" content="es_AR"><meta property="og:title" content="Helado de {{NAME}} · Scannapieco"><meta property="og:description" content="{{META}}"><meta property="og:url" content="{{URL}}"><meta property="og:image" content="{{BASE}}/og.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,100&family=Figtree:wght@400;500;600;700&family=Yellowtail&display=swap">
+<link rel="stylesheet" href="/css/site.css?v={{V}}">
+<script type="application/ld+json">{{JSONLD}}</script>
+<script>try{if(localStorage.getItem('sc_still')==='1')document.documentElement.classList.add('still')}catch(e){}</script>
+</head>
+<body>
+<header class="top scrolled">
+  <a class="brand" href="/" aria-label="Heladería Scannapieco, inicio"><svg class="brand-tram" viewBox="0 0 220 120" aria-hidden="true"><use href="/tram.svg#t"/></svg><span class="brand-t"><small>Heladería</small><b>Scannapieco</b><small>desde 1938</small></span></a>
+  <div class="top-r"><a class="btn btn-line btn-sm" href="/#gustos">Todos los gustos</a></div>
+</header>
+<main>
+  <section class="g-hero" style="--c:{{COLOR}}">
+    <div>
+      <nav class="crumbs" aria-label="Ruta"><a href="/">Inicio</a> / <a href="/#gustos">{{CAT}}</a> / <span aria-current="page">{{NAME}}</span></nav>
+      <h1>Helado de <em>{{NAME}}</em></h1>
+      <div class="g-tags">{{TAGS}}</div>
+      <p class="g-desc">{{DESC}}</p>
+      <p class="g-stock">{{STOCK}}</p>
+      {{PAIRS}}
+      <div class="cta"><button class="btn btn-solid buy" type="button" id="addG" data-id="{{ID}}" {{DISABLED}}>Sumarlo a mi pote</button><a class="btn btn-line" href="/#visitanos">Cómo llegar</a></div>
+      <ul class="g-prices" aria-label="Precios por tamaño">{{PRICES}}</ul>
+    </div>
+    <div class="g-tub" aria-hidden="true" style="--lv:{{LEVEL}}"><span class="tub-cream"><svg viewBox="0 0 120 16" preserveAspectRatio="none"><path d="M0 16V8c10-6 20 6 30 0s20-6 30 0 20 6 30 0 20-6 30 0v8z"/></svg></span></div>
+  </section>
+  <section class="sec" aria-labelledby="h-more" style="padding-top:70px">
+    <h2 id="h-more" style="font-size:2rem">Otros gustos de la misma familia</h2>
+    <ul class="g-more">{{MORE}}</ul>
+    <p style="margin-top:28px;color:var(--ink-2);max-width:60ch">Heladería Scannapieco hace helado artesanal desde 1938. Estamos en Av. Álvarez Thomas 10, Colegiales, y enviamos a Colegiales, Palermo Hollywood, Chacarita, Belgrano R y Villa Ortúzar.</p>
+  </section>
+</main>
+<footer class="foot"><div class="foot-in"><p>Av. Álvarez Thomas 10, Colegiales · 4777-3528</p><p><a href="/">Volver al inicio</a></p></div></footer>
+<script>
+document.getElementById('addG')?.addEventListener('click', function () {
+  var id = Number(this.dataset.id), p;
+  try { p = JSON.parse(localStorage.getItem('sc_pote')) || { size: 'medio', flavors: [], qty: 1 }; } catch (e) { p = { size: 'medio', flavors: [], qty: 1 }; }
+  if (p.flavors.indexOf(id) < 0) p.flavors.push(id);
+  try { localStorage.setItem('sc_pote', JSON.stringify(p)); } catch (e) {}
+  location.href = '/#pedido';
+});
+</script>
+</body>
+</html>
