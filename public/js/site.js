@@ -318,6 +318,13 @@
     }, { threshold: .5 }).observe(sCard);
   }
 
+  /* ---------- fotos que se revelan al entrar en pantalla ---------- */
+  const reveals = $$('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((en) => en.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -12% 0px' });
+    reveals.forEach((r) => io.observe(r));
+  } else reveals.forEach((r) => r.classList.add('in'));
+
   /* ---------- historia: el tranvía avanza con el scroll ---------- */
   const hist = $('#historia'), hTram = $('#hTram'), stops = $$('#stops li');
   if (hist && hTram) {

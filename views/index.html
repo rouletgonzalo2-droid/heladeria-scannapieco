@@ -11,8 +11,9 @@
 <meta property="og:title" content="Heladería Scannapieco · desde 1938"><meta property="og:description" content="Helado artesanal en Colegiales. Vitrina en vivo, pedidos con envío y tortas heladas por encargo.">
 <meta property="og:url" content="{{BASE}}/"><meta property="og:image" content="{{BASE}}/og.png"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="manifest" href="/site.webmanifest">
+<link rel="preload" as="image" href="/img/hero-dulce.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,100&family=Figtree:wght@400;500;600;700&family=Yellowtail&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&family=Yellowtail&display=swap">
 <link rel="stylesheet" href="/css/site.css?v={{V}}">
 <script type="application/ld+json">{{JSONLD}}</script>
 <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('sc_still')==='1')document.documentElement.classList.add('still')}catch(e){}</script>
@@ -49,36 +50,42 @@
 <section class="hero" aria-labelledby="h1">
   <div class="hero-copy">
     <p class="motto" aria-hidden="true">Nada que un helado no pueda arreglar</p>
-    <h1 id="h1"><span class="ln">Helado artesanal</span> <span class="ln">en Colegiales,</span> <span class="ln"><em>desde 1938.</em></span></h1>
+    <h1 id="h1"><span class="ln">Helado artesanal</span> <span class="ln">en Colegiales</span> <span class="ln"><em>desde 1938</em></span></h1>
     <p class="lead">La misma familia, la misma cuchara. Mirá qué hay hoy en la vitrina, armá tu kilo y elegí si pasás a buscarlo o te lo llevamos.</p>
     <div class="cta">
-      <a class="btn btn-solid" href="#pedido">Armá tu pedido</a>
-      <a class="btn btn-line" href="#gustos">Ver los {{COUNT}} gustos</a>
+      <a class="btn btn-paper" href="#pedido">Armá tu pedido</a>
+      <a class="btn btn-ghost" href="#gustos">Ver los {{COUNT}} gustos</a>
     </div>
     {{NOTE}}
+    <dl class="facts">
+      <div><dt>Dónde</dt><dd>Álvarez Thomas 10</dd></div>
+      <div><dt>Hoy</dt><dd class="{{OPEN_CLS}}">{{OPEN}}</dd></div>
+      <div><dt>Envíos</dt><dd>Colegiales y alrededores</dd></div>
+    </dl>
   </div>
-  <div class="hero-stage">
-    <button class="cone" id="cone" type="button" aria-label="Tocá el cucurucho para sumarle una bocha">
-      <svg viewBox="0 0 300 420" aria-hidden="true">
-        <defs><pattern id="waffle" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#e9c58d"/><path d="M0 0H16M0 0V16" stroke="#c79a5b" stroke-width="3"/></pattern></defs>
-        <g id="scoops"></g>
-        <path class="cone-body" d="M78 236 L150 412 L222 236 Z" fill="url(#waffle)" stroke="#12284a" stroke-width="3" stroke-linejoin="round"/>
-        <path d="M72 236h156" stroke="#12284a" stroke-width="5" stroke-linecap="round"/>
-      </svg>
-    </button>
-    <p class="cone-tip"><span>Tocá el cucurucho</span></p>
-    <a class="fotd" href="/gustos/{{FOTD_SLUG}}" style="--c:{{FOTD_COLOR}}"><span class="dot" aria-hidden="true"></span><span><small>Hoy recomendamos</small>{{FOTD_NAME}}</span></a>
-  </div>
-  <div class="line" aria-hidden="true">
-    <div class="wire"></div>
-    <svg class="tram-run"><use href="#tram"/></svg>
-    <div class="rail"></div>
+  <figure class="hero-photo">
+    <img src="/img/hero-dulce.jpg" alt="Una bocha de helado de dulce de leche recién sacada de la bacha" width="1300" height="1963" fetchpriority="high">
+    <a class="fotd" href="/gustos/{{FOTD_SLUG}}" style="--c:{{FOTD_COLOR}}"><span class="dot" aria-hidden="true"></span><span><small>Hoy recomendamos</small>{{FOTD_NAME}}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </figure>
+</section>
+<div class="line" aria-hidden="true">
+  <div class="wire"></div>
+  <svg class="tram-run"><use href="#tram"/></svg>
+  <div class="rail"></div>
+</div>
+
+<section class="manif" aria-labelledby="h-manif">
+  <figure class="manif-photo reveal"><img src="/img/mostrador.jpg" alt="Una bocha de helado servida en un cucurucho sobre el mostrador" width="1400" height="933" loading="lazy"></figure>
+  <div class="manif-copy">
+    <h2 id="h-manif">La receta pasa de mano en mano. <em>La cuchara también.</em></h2>
+    <p>Desde 1938 hacemos el helado en nuestra fábrica, de a poco y todos los días. Lo que hay en la vitrina es lo que salió hoy, y cuando una bacha se termina, se termina.</p>
+    <a class="arrow-link" href="#historia">Conocé la historia <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
 </section>
 
 <div class="marquee" aria-hidden="true"><div class="marquee-in"><span>{{MARQUEE}}  ·  </span><span>{{MARQUEE}}  ·  </span></div></div>
 
-<section class="sec vitrina" id="gustos" aria-labelledby="h-gustos">
+<div class="night"><section class="sec vitrina" id="gustos" aria-labelledby="h-gustos">
   <div class="sec-head">
     <h2 id="h-gustos">La vitrina, <em>ahora mismo</em></h2>
     <p>El nivel de cada bacha baja con cada pedido y lo actualizan desde la fábrica. Tocá un gusto para sumarlo a tu pote.</p>
@@ -102,7 +109,7 @@
   </div>
   <div class="glass" id="vitrina">{{VITRINA}}</div>
   <p class="empty" id="vitEmpty" hidden>No encontramos ese gusto. Probá con otra palabra.</p>
-</section>
+</section></div>
 
 <section class="sec builder" id="pedido" aria-labelledby="h-pedido">
   <div class="sec-head">
@@ -140,6 +147,8 @@
     <p>Encargala con 48 horas y pasá a buscarla el día que elijas. Si querés, le escribimos un mensaje arriba.</p>
   </div>
   <form class="t-form" id="cakeForm" novalidate>
+    <figure class="t-photo reveal"><img src="/img/chocolate.jpg" alt="Bandeja de helado de chocolate con nibs de cacao, vista desde arriba" width="1000" height="1250" loading="lazy"></figure>
+    <div class="t-main">
     <ul class="cakes">{{CAKES}}</ul>
     <fieldset class="t-when">
       <legend>¿Para cuándo?</legend>
@@ -155,6 +164,7 @@
       <button class="btn btn-solid buy" type="submit">Encargar torta</button>
     </div>
     <p class="hint" id="cakeMsg" role="status"></p>
+    </div>
   </form>
 </section>
 
@@ -183,10 +193,13 @@
     </form>
     <p class="hint" id="cardMsg" role="status"></p>
   </div>
-  <div class="s-card" id="sCard" aria-hidden="true">
-    <div class="s-card-top"><svg><use href="#tram"/></svg><span>Scannapieco</span></div>
-    <ol class="stamps"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ol>
-    <p class="s-card-foot"><span id="sName">Tu nombre</span><span>S-······</span></p>
+  <div class="s-visual">
+    <figure class="s-photo reveal"><img src="/img/cucurucho.jpg" alt="Una mano sostiene un cucurucho con dos bochas de chocolate" width="1200" height="800" loading="lazy"></figure>
+    <div class="s-card" id="sCard" aria-hidden="true">
+      <div class="s-card-top"><svg><use href="#tram"/></svg><span>Scannapieco</span></div>
+      <ol class="stamps"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ol>
+      <p class="s-card-foot"><span id="sName">Tu nombre</span><span>S-······</span></p>
+    </div>
   </div>
 </section>
 
